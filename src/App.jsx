@@ -9,13 +9,14 @@ const modalStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '90%', // Default width
-  maxWidth: 600, // Maximum width for larger screens
+  width: '90%',
+  maxWidth: 600,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid #ddd',
   boxShadow: 24,
   p: 4,
-  overflowY: 'auto', // Allows scrolling if content is too long
+  borderRadius: 4,
+  overflowY: 'auto',
 };
 
 const ProductList = () => {
@@ -75,7 +76,19 @@ const ProductList = () => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '20px', backgroundColor: '#f9f9f9' }}>
       {products.map((product) => (
-        <Card key={product.id} sx={{ width: 200, m: 2, p: 2, boxShadow: 3, borderRadius: 2, backgroundColor: '#fff', textAlign: 'center', '&:hover': { boxShadow: 6 } }}>
+        <Card
+          key={product.id}
+          sx={{
+            width: { xs: '90%', sm: 300 }, // Responsive width
+            m: 2,
+            p: 2,
+            boxShadow: 3,
+            borderRadius: 2,
+            backgroundColor: '#fff',
+            textAlign: 'center',
+            '&:hover': { boxShadow: 6 },
+          }}
+        >
           <CardMedia
             component="img"
             height="150"
@@ -109,15 +122,17 @@ const ProductList = () => {
               <Typography id="modal-modal-title" variant="h6" component="h2" gutterBottom>
                 {selectedProduct.title}
               </Typography>
-              <img src={selectedProduct.image} alt={selectedProduct.title} style={{ width: '100%', height: 'auto', objectFit: 'contain', margin: '10px 0' }} />
+             
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 {selectedProduct.description}
               </Typography>
               <Typography variant="h6" color="text.secondary">
                 ${selectedProduct.price}
               </Typography>
-              <PaymentButton product={selectedProduct} />
-              <PaymentButtons />
+              <Box sx={{ mt: 2 }}>
+                <PaymentButton product={selectedProduct} />
+                <PaymentButtons />
+              </Box>
             </>
           ) : (
             <Typography id="modal-modal-title" variant="h6" component="h2">
