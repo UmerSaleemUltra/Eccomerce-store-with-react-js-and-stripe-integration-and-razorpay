@@ -6,7 +6,7 @@ const PaymentButton = ({ product }) => {
     const options = {
       key: 'rzp_test_GQ6XaPC6gMPNwH', // Enter the Key ID you got from Razorpay
       amount: product.price * 100, // Amount in paise (₹10 = 1000 paise)
-      currency: 'USD',
+      currency: 'INR',
       name: product.title,
       description: 'Payment for ' + product.title,
       handler: function (response) {
