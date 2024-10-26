@@ -1,3 +1,4 @@
+// src/ProductList.jsx
 import React, { useState, useEffect } from 'react';
 import { CircularProgress, Card, CardContent, CardMedia, Typography, Button, Modal, Box } from '@mui/material';
 import PaymentButton from './payment';
@@ -54,17 +55,6 @@ const ProductList = () => {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    const disableRightClick = (e) => {
-      e.preventDefault();
-    };
-
-    document.addEventListener("contextmenu", disableRightClick);
-    return () => {
-      document.removeEventListener("contextmenu", disableRightClick);
-    };
-  }, []);
-
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
@@ -89,7 +79,7 @@ const ProductList = () => {
         <Card
           key={product.id}
           sx={{
-            width: { xs: '90%', sm: 300 },
+            width: { xs: '90%', sm: 300 }, // Responsive width
             m: 2,
             p: 2,
             boxShadow: 3,
